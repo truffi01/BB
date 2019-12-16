@@ -8,6 +8,13 @@ class App extends Component {
 
   componentDidMount(){
     //fetch data from backend API 
+    fetch(`/api/product`, {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
+      }
+    }).then(res => console.log(res))
+    .catch(err => console.log(err))
   }
 
   render(){
