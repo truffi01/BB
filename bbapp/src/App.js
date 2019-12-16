@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import ProductList from './components/productlist';
+import ProductDetails from './components/productdetails';
 
 class App extends Component {
 
-  product = ['soap', 'cream']
+  state = {
+    product : [],
+    productInfo: null, 
+  }
 
   componentDidMount(){
     //fetch data from backend API 
@@ -14,7 +18,7 @@ class App extends Component {
         'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
       }
     }).then(res => res.json())
-    .then(resp => console.log(resp))
+    .then(resp => this.setState({product: resp}))
     .catch(err => console.log(err))
   }
 
@@ -22,7 +26,10 @@ class App extends Component {
      return (
     <div className="App">
         <h2>Basic Bid </h2>
-        <ProductList product={this.product}/>
+        <div className="layout">
+        <ProductList product={this.state.product}/>
+        <ProductDetails product={this.state.productInfo} />
+        </div> 
     </div>
   )}; 
   }
