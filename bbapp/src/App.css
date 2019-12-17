@@ -11,4 +11,16 @@
 .layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  text-align: left;
+  grid-gap: 20px;
 }
+
+.product-single {
+  display: grid; 
+  grid-template-columns: 1fr auto auto;
+}
+
+.product-single span{
+  font-size: 2em;
+  margin: 15px 5px; 
+} 

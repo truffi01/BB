@@ -9,6 +9,7 @@ class App extends Component {
   state = {
     product : [],
     productInfo: null, 
+    editedProduct: null, 
   }
 
   componentDidMount(){
@@ -25,7 +26,8 @@ class App extends Component {
 
   loadProduct = product => {
     this.setState({
-      productInfo: product 
+      productInfo: product,
+      editedProduct: null,  
     });
   }
 
@@ -37,15 +39,28 @@ class App extends Component {
     })
   }
 
+  editClicked = selProduct => {
+    this.setState({
+      editedProduct: selProduct
+    })
+  }
+
+  newProduct = () => {
+    this.setState({
+      editedProduct: {name:'', description:''}
+    })
+  }
+
+
   render(){
      return (
     <div className="App">
         <h2>Basic Bid </h2>
         <div className="layout">
-        <ProductList product={this.state.product} productClicked={this.loadProduct} productDeleted={this.productDeleted}/>
+        <ProductList product={this.state.product} productClicked={this.loadProduct} productDeleted={this.productDeleted} editClicked={this.editClicked} newProduct={this.newProduct}/>
         <div>
-          <ProductDetails product={this.state.productInfo} updateProduct={this.loadProduct} />
-        <Form />
+          { !this.state.editedProduct ? ( <ProductDetails product={this.state.productInfo} updateProduct={this.loadProduct} />) : <Form product={this.state.editedProduct} />}
+        
         </div>
         </div> 
     </div>

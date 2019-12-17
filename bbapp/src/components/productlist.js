@@ -19,15 +19,32 @@ function ProductList(props) {
           .catch(err => console.log(err))
     }
 
+    const editClicked = product => evt => {
+        props.editClicked(product)
+        fetch(`${process.env.REACT_APP_API_URL}/api/product/${product.id}/`, {
+            method: 'DELETE',
+            headers: {
+              'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
+            }
+          })
+          .then(resp => props.productDeleted(product))
+          .catch(err => console.log(err))
+    }
+
+    const newProduct = () => {
+        props.newProduct(); 
+    }
+
     return(
         <div >
         {props.product.map(product => {
-            return <div key={product.id}><h5  onClick={productClicked(product)}>{product.name}</h5>
+            return <div key={product.id} className="product-single"><h5  onClick={productClicked(product)}>{product.name}</h5>
         <h6 onClick={removeClicked(product)}>Delete</h6> 
+        <h6 onClick={editClicked(product)}>Edit</h6>
         </div>
 
         })}
-        
+        <button onClick={newProduct}>Add New</button>
         </div>
     )
 }
