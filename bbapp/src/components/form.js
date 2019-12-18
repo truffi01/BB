@@ -35,7 +35,17 @@ class Form extends Component {
   }
 
   updateClicked = () => {
-    console.log('saved'); 
+    console.log('saved');
+    fetch(`${process.env.REACT_APP_API_URL}/api/product/${this.props.product.id}/`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json', 
+        'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927'
+      },
+      body: JSON.stringify(this.state.editedProduct)
+    }).then(res => res.json())
+    .then(resp => this.props.editedProduct(resp))
+    .catch(err => console.log(err)) 
   }
 
   render(){
