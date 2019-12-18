@@ -49,6 +49,11 @@ class Form extends Component {
   }
 
   render(){
+
+    const disabled = this.state.editedProduct.name.length === 0 || this.state.editedProduct.description.length ===0
+
+
+
      return (
     <div className="Form">
         <h1>Form</h1>
@@ -56,7 +61,7 @@ class Form extends Component {
         <input type="text" name ="name" value={this.props.product.name} onChange={this.inputChanged} /><br/>
         <span>Description</span><br/>
         <textarea name ="description" value={this.props.product.description} onChange={this.inputChanged}/><br/>
-        {this.props.product.id ? <button onClick={this.updateClicked}>Update</button> : <button onClick={this.savedClicked}>Add to List</button> }
+        {this.props.product.id ? <button disabled={disabled} onClick={this.updateClicked}>Update</button> : <button onClick={this.savedClicked} disabled={disabled} >Add to List</button> }
         
         <button onClick={this.cancelClicked}>Cancel</button>
     </div>
