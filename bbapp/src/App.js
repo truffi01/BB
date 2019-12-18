@@ -17,7 +17,7 @@ class App extends Component {
     fetch(`${process.env.REACT_APP_API_URL}/api/product/`, {
       method: 'GET',
       headers: {
-        'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
+        'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927',
       }
     }).then(res => res.json())
     .then(resp => this.setState({product: resp}))
@@ -51,6 +51,17 @@ class App extends Component {
     })
   }
 
+  cancelForm = () => {
+    this.setState({
+      editedProduct: null, 
+    }) ;
+  }
+
+  addProduct = producty => {
+    this.setState({
+      product: [...this.state.product, producty]});
+  }
+
 
   render(){
      return (
@@ -59,7 +70,7 @@ class App extends Component {
         <div className="layout">
         <ProductList product={this.state.product} productClicked={this.loadProduct} productDeleted={this.productDeleted} editClicked={this.editClicked} newProduct={this.newProduct}/>
         <div>
-          { !this.state.editedProduct ? ( <ProductDetails product={this.state.productInfo} updateProduct={this.loadProduct} />) : <Form product={this.state.editedProduct} />}
+          { !this.state.editedProduct ? ( <ProductDetails product={this.state.productInfo} updateProduct={this.loadProduct} />) : <Form product={this.state.editedProduct} cancelForm={this.cancelForm} newProduct={this.addProduct}/>}
         
         </div>
         </div> 

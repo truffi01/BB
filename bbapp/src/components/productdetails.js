@@ -8,7 +8,7 @@ class ProductDetails extends Component {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json', 
-              'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
+              'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927',
             }
           }).then(res => res.json())
           .then(resp => {this.props.updateProduct(resp)

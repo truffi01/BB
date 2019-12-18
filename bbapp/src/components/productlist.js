@@ -12,7 +12,7 @@ function ProductList(props) {
         fetch(`${process.env.REACT_APP_API_URL}/api/product/${product.id}/`, {
             method: 'DELETE',
             headers: {
-              'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
+              'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927',
             }
           })
           .then(resp => props.productDeleted(product))
@@ -24,7 +24,7 @@ function ProductList(props) {
         fetch(`${process.env.REACT_APP_API_URL}/api/product/${product.id}/`, {
             method: 'DELETE',
             headers: {
-              'Authorization': 'Token 523ae3e1c535286e69ceda61d895fe88b777865e',
+              'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927',
             }
           })
           .then(resp => props.productDeleted(product))
