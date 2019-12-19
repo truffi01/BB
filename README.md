@@ -9,6 +9,8 @@ This code allows users to make a basic shopping list app.
 
 ##Development 
 
+Django Rest framework API with cookie authentication for user login and registration with a React frontend using fetch calls to the API rest endpoint. A fully functional CRUD application that can be styled and built out with extra features. 
+
 ##Requirements
 Make sure these are installed on your computer. 
 - [Python](https://www.python.org/downloads/release/python-374/) (3.7+)
