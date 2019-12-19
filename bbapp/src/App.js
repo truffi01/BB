@@ -3,6 +3,7 @@ import './App.css';
 import ProductList from './components/productlist';
 import ProductDetails from './components/productdetails';
 import Form from './components/form';
+import { withCookies } from 'react-cookie';
 
 class App extends Component {
 
@@ -10,18 +11,24 @@ class App extends Component {
     product : [],
     productInfo: null, 
     editedProduct: null, 
+    token: this.props.cookies.get('token')
   }
 
   componentDidMount(){
     //fetch data from backend API 
-    fetch(`${process.env.REACT_APP_API_URL}/api/product/`, {
-      method: 'GET',
-      headers: {
-        'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927',
-      }
-    }).then(res => res.json())
-    .then(resp => this.setState({product: resp}))
-    .catch(err => console.log(err))
+    if (this.state.token){
+      fetch(`${process.env.REACT_APP_API_URL}/api/product/`, {
+            method: 'GET',
+            headers: {
+              'Authorization': `Token ${this.state.token}`
+            }
+          }).then(res => res.json())
+          .then(resp => this.setState({product: resp}))
+          .catch(err => console.log(err))
+    } else {
+      window.location.href='/';
+    }
+    
   }
 
   loadProduct = product => {
@@ -68,9 +75,9 @@ class App extends Component {
     <div className="App">
         <h2>Basic Bid </h2>
         <div className="layout">
-        <ProductList product={this.state.product} productClicked={this.loadProduct} productDeleted={this.productDeleted} editClicked={this.editClicked} newProduct={this.newProduct}/>
+        <ProductList product={this.state.product} productClicked={this.loadProduct} productDeleted={this.productDeleted} editClicked={this.editClicked} newProduct={this.newProduct} token={this.state.token}/>
         <div>
-          { !this.state.editedProduct ? ( <ProductDetails product={this.state.productInfo} updateProduct={this.loadProduct} />) : <Form product={this.state.editedProduct} cancelForm={this.cancelForm} newProduct={this.addProduct} editedProduct={this.loadProduct}/>}
+          { !this.state.editedProduct ? ( <ProductDetails product={this.state.productInfo} updateProduct={this.loadProduct} token={this.state.token} />) : <Form product={this.state.editedProduct} cancelForm={this.cancelForm} newProduct={this.addProduct} editedProduct={this.loadProduct} token={this.state.token}/>}
         
         </div>
         </div> 
@@ -79,4 +86,4 @@ class App extends Component {
   }
 
 
-export default App;
+export default withCookies(App);

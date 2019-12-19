@@ -26,7 +26,7 @@ class Form extends Component {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', 
-        'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927'
+        'Authorization': `Token ${this.props.token}`
       },
       body: JSON.stringify(this.state.editedProduct)
     }).then(res => res.json())
@@ -40,7 +40,7 @@ class Form extends Component {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json', 
-        'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927'
+        'Authorization': `Token ${this.props.token}`
       },
       body: JSON.stringify(this.state.editedProduct)
     }).then(res => res.json())

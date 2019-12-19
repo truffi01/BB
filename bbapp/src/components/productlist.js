@@ -12,7 +12,8 @@ function ProductList(props) {
         fetch(`${process.env.REACT_APP_API_URL}/api/product/${product.id}/`, {
             method: 'DELETE',
             headers: {
-              'Authorization': 'Token dca99d4c379d15ca26670aa8e396c981df44d927',
+              'Authorization': `Token ${this.props.token}`,
+              
             }
           })
           .then(resp => props.productDeleted(product))
