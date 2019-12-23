@@ -27,7 +27,6 @@ class App extends Component {
             console.log(res)
           })
           .then(resp => {
-            console.log(resp);
             this.setState({product: resp})
         }
           )
