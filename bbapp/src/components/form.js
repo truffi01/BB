@@ -29,7 +29,10 @@ class Form extends Component {
         'Authorization': `Token ${this.props.token}`
       },
       body: JSON.stringify(this.state.editedProduct)
-    }).then(res => res.json())
+    })
+    .then(res => {
+      return res.json()
+    })
     .then(resp => this.props.newProduct(resp))
     .catch(err => console.log(err))
   }
@@ -43,7 +46,9 @@ class Form extends Component {
         'Authorization': `Token ${this.props.token}`
       },
       body: JSON.stringify(this.state.editedProduct)
-    }).then(res => res.json())
+    }).then(res => {
+      return res.json()
+      })
     .then(resp => this.props.editedProduct(resp))
     .catch(err => console.log(err)) 
   }

@@ -22,14 +22,12 @@ class App extends Component {
             headers: {
               'Authorization': `Token ${this.state.token}`
             }
-          }).then(res => {
-            res.json()
-            console.log(res)
           })
+          .then(res => {return res.json()})
           .then(resp => {
+            console.log(resp);
             this.setState({product: resp})
-        }
-          )
+          })
           .catch(err => console.log(err))
     } else {
       window.location.href='/';
