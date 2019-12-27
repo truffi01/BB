@@ -31,7 +31,7 @@ class Form extends Component {
       body: JSON.stringify(this.state.editedProduct)
     })
     .then(res => {
-      return res.json()
+       return res.json()
     })
     .then(resp => this.props.newProduct(resp))
     .catch(err => console.log(err))
