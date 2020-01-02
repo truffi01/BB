@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Product 
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User 
+from crum import get_current_user;
 
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
