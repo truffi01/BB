@@ -13,7 +13,6 @@ function ProductList(props) {
             method: 'DELETE',
             headers: {
               'Authorization': `Token ${this.props.token}`,
-              
             }
           })
           .then(resp => props.productDeleted(product))
