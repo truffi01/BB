@@ -1,5 +1,4 @@
 import React from 'react';
-import Delete from './delete';
 
 function ProductList(props) {
 
@@ -8,11 +7,11 @@ function ProductList(props) {
     }
 
     const removeClicked = product => evt => {
-        props.productClicked(product)
         fetch(`${process.env.REACT_APP_API_URL}/api/product/${product.id}/`, {
             method: 'DELETE',
             headers: {
-              'Authorization': `Token ${this.props.token}`,
+              'Content-Type': 'application/json', 
+              'Authorization': `Token ${props.token}`
             }
           })
           .then(resp => props.productDeleted(product))

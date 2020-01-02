@@ -13,7 +13,6 @@ const routing = (
             <Route exact path="/" component={Login} />
             <Route exact path="/product" component={App} />
         </CookiesProvider>
-
     </BrowserRouter>
 )
 
